@@ -1,0 +1,5 @@
+[mysql1]
+10.202.0.109  ansible_user=centos ansible_password=centos ansible_become=true ansible_become_pass=centos
+
+[mysql2]
+10.202.0.111 ansible_user=centos ansible_password=centos ansible_become=true ansible_become_pass=centos

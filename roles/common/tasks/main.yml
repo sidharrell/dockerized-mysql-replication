@@ -1,0 +1,53 @@
+---
+# This role contains common plays that will run on all nodes.
+
+- name: Install python bindings for SE Linux
+  yum: name={{ item }} state=present
+  with_items:
+   - libselinux-python
+   - libsemanage-python
+
+- selinux:
+    state: disabled
+  register: st
+
+- name: reboot if SELinux changed
+  shell: shutdown  -r +1 "Ansible-triggered Reboot"
+  async: 0
+  poll: 0
+  ignore_errors: true
+  when: st.changed
+
+- name: (reboot) Wait for server to restart
+  wait_for_connection:
+    delay: 75
+  when: st.changed
+
+- wait_for:
+    port: 22
+    host: "{{ inventory_hostname }}"
+  delegate_to: 127.0.0.1
+  when: st.changed
+
+- name: Add docker repository
+  yum_repository:
+    name: docker
+    description: docker-ce repo
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgkey: https://download.docker.com/linux/centos/gpg
+
+- name: Download and install yum-utils
+  yum: name=yum-utils state=present
+
+- name: Download and install device-mapper-persistent-data
+  yum: name=device-mapper-persistent-data state=present
+
+- name: Download and install lvm2
+  yum: name=lvm2 state=present
+
+- name: Remove any old docker packages
+  yum: name=docker,docker-client,docker-client-latest,docker-common,docker-latest,docker-latest-logrotate,docker-logrotate,docker-engine state=removed
+
+- name: Download and install docker-ce
+  yum: name=docker-ce state=present
+
