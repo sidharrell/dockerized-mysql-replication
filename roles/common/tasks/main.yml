@@ -51,3 +51,9 @@
 - name: Download and install docker-ce
   yum: name=docker-ce state=present
 
+- name: Enable and start docker
+  systemd:
+    name: docker.service
+    state: started
+    enabled: True
+
