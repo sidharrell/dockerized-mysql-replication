@@ -48,6 +48,9 @@
 - name: Remove any old docker packages
   yum: name=docker,docker-client,docker-client-latest,docker-common,docker-latest,docker-latest-logrotate,docker-logrotate,docker-engine state=removed
 
+- name: Stop and disable firewalld
+  systemd: name=firewalld state=stopped enabled=no
+
 - name: Download and install docker-ce
   yum: name=docker-ce state=present
 
