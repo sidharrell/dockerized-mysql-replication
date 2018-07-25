@@ -39,8 +39,16 @@
     retries: 3
     delay: 20
 
+- hosts: swarmmanager
+
+  tasks:
+  - name: "create overlay network"
+    shell: "docker network create -d overlay --subnet=172.20.0.0/16 --gateway=172.20.0.2 --attachable db-net"
+    when: hostvars.mysql1.swarminit.changed
+
+
 # Example that prints the loopback address and gateway for each host
 #- hosts: all
 #  tasks:
 #  - debug:
-#     msg: "{{ docker_info }}"
+#    msg: "{{ docker_info }}"
