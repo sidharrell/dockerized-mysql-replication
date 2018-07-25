@@ -44,7 +44,7 @@
   tasks:
   - name: "create overlay network"
     shell: "docker network create -d overlay --subnet=172.20.0.0/16 --gateway=172.20.0.2 --attachable db-net"
-    when: hostvars.mysql1.swarminit.changed
+#    when: hostvars.mysql1.swarminit.changed
 
 
 # Example that prints the loopback address and gateway for each host
