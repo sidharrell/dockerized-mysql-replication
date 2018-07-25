@@ -1,0 +1,45 @@
+global
+    log         127.0.0.1 local6 notice
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    daemon
+    ssl-default-bind-ciphers !SSLv2:ECDHE-RSA-AES128-SHA256:AES128-GCM-SHA256:HIGH:!LOW:!MEDIUM:!EXP:!MD5:!aNULL:!EDH:!DES:!KRB5-DES-CBC3-SHA:!DES-CBC3-SHA
+    ssl-default-bind-options no-sslv3 no-tlsv10
+    stats socket :::7501 ssl crt /usr/local/etc/haproxy/selfsigned.pem
+
+defaults
+    log                     global
+    mode                    tcp
+    retries                 2
+    timeout http-request    60s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m   #Change this depending on the client's application.
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+userlist stats_users
+    user admin insecure-password {{ adminpassword }}
+
+listen stats
+    bind :::7500 ssl crt /usr/local/etc/haproxy/selfsigned.pem
+    mode http
+    stick-table type ipv6 size 250k expire 15m store sess_rate(60s)
+    acl admin_addrs src {{ host_subnet }}
+    acl authenticated http_auth(stats_users)
+    stats enable
+    stats uri /
+    stats http-request auth unless authenticated OR admin_addrs
+    stats refresh 60
+    stats show-legends
+    stats admin if admin_addrs
+
+listen {{ listener1 }}
+    bind *:3307
+    mode tcp
+    option mysql-check user haproxy_check
+    server {{ backend1 }} {{ backend1_ip }}:3306 check
+    server {{ backend2 }} {{ backend2_ip }}:3306 check backup
+
