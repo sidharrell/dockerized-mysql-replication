@@ -60,3 +60,5 @@
     state: started
     enabled: True
 
+- pip:
+    name: docker-py
