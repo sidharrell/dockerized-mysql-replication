@@ -23,12 +23,6 @@
     delay: 75
   when: st.changed
 
-- wait_for:
-    port: 22
-    host: "{{ inventory_hostname }}"
-  delegate_to: 127.0.0.1
-  when: st.changed
-
 - name: Add docker repository
   yum_repository:
     name: docker
