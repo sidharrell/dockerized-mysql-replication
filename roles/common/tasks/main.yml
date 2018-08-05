@@ -68,3 +68,4 @@
 
 - pip:
     name: docker-py
+    name: docker-compose
