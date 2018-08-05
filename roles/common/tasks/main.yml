@@ -54,6 +54,9 @@
 - name: Download and install docker-ce
   yum: name=docker-ce state=present
 
+- name: Download and install pip
+  yum: name=pip state=present
+
 - name: Enable and start docker
   systemd:
     name: docker.service
