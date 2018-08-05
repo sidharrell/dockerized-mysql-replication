@@ -54,6 +54,9 @@
 - name: Download and install docker-ce
   yum: name=docker-ce state=present
 
+- name: Install the epel-release package
+  yum: name=epel-release state=present
+
 - name: Download and install pip
   yum: name=pip state=present
 
