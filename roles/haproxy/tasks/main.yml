@@ -9,3 +9,23 @@
 
 - name: Configure the haproxy cnf file with hosts
   template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+
+- name: Add selfsigned cert
+  copy: src=selfsigned.pem dest=/etc/haproxy/selfsigned.pem
+
+- name: Add Dockerfile
+  copy: src=Dockerfile dest=/etc/haproxy/Dockerfile
+
+- name: Build the container
+  shell: cd /etc/haproxy && docker build -t my-haproxy .
+
+- name: Start the container
+  shell: "docker run \
+         -d \
+         -p 7500:7500/tcp \
+         -p 3607-3610:3607-3610/tcp \
+         --network db-net \
+         --ip 172.20.0.5 \
+         --name haproxy-for-databases \
+         -v /var/docker/haproxy-for-databases/etc:/usr/local/etc/haproxy:ro \
+         my-haproxy:latest"
