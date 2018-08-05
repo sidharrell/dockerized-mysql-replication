@@ -1,5 +1,5 @@
 [swarmmanager]
-mysql1
+mysql1:
   ansible_host=10.202.0.107
   ansible_user=centos
   ansible_become=true
@@ -7,7 +7,7 @@ mysql1
   ansible_become_pass=centos
   haproxy_ip=172.20.0.5
 [swarmworker]
-mysql2
+mysql2:
   ansible_host=10.202.0.109
   ansible_user=centos
   ansible_become=true
