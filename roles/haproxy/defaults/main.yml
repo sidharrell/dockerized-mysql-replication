@@ -8,5 +8,4 @@ backend1: site-{{ site1 }}-on-db03
 backend2: site-{{ site1 }}-on-db04
 backend1_ip: 172.20.0.11
 backend2_ip: 172.20.0.12
-
 host_subnet: 192.168.1.0/24

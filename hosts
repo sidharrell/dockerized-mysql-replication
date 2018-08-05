@@ -1,4 +1,16 @@
 [swarmmanager]
-mysql1 ansible_host=10.202.0.107 ansible_user=centos ansible_become=true ansible_ssh_pass=centos ansible_become_pass=centos
+mysql1
+  ansible_host=10.202.0.107
+  ansible_user=centos
+  ansible_become=true
+  ansible_ssh_pass=centos
+  ansible_become_pass=centos
+  haproxy_ip=172.20.0.5
 [swarmworker]
-mysql2 ansible_host=10.202.0.109 ansible_user=centos ansible_become=true ansible_ssh_pass=centos ansible_become_pass=centos
+mysql2
+  ansible_host=10.202.0.109
+  ansible_user=centos
+  ansible_become=true
+  ansible_ssh_pass=centos
+  ansible_become_pass=centos
+  haproxy_ip=172.20.0.6

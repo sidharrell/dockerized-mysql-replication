@@ -25,7 +25,7 @@
          -p 7500:7500/tcp \
          -p 3607-3610:3607-3610/tcp \
          --network db-net \
-         --ip 172.20.0.5 \
+         --ip {{ haproxy_ip }} \
          --name haproxy-for-databases \
          -v /etc/haproxy:/usr/local/etc/haproxy:ro \
          my-haproxy:latest"
