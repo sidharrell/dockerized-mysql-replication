@@ -17,11 +17,9 @@
   copy: src=Dockerfile dest=/etc/haproxy/Dockerfile
 
 - name: Build the container
-  docker_service:
-    project_name: haproxy
-    definition:
-      my-haproxy:
-        build: "/etc/haproxy"
+  docker_image:
+     path: /etc/haproxy
+     name: my-haproxy
 
 - name: Start the container
   shell: "docker run \
