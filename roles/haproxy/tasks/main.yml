@@ -8,10 +8,10 @@
     mode: 0755
 
 - name: Configure the haproxy cnf file with hosts
-  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  template: src=haproxy.cfg.j2 dest=/usr/local/etc/haproxy/haproxy.cfg
 
 - name: Add selfsigned cert
-  copy: src=selfsigned.pem dest=/etc/haproxy/selfsigned.pem
+  copy: src=selfsigned.pem dest=/usr/local/etc/haproxy/selfsigned.pem
 
 - name: Add Dockerfile
   copy: src=Dockerfile dest=/etc/haproxy/Dockerfile
