@@ -19,9 +19,9 @@
 - name: Build the container
   docker_service:
     project_name: haproxy
-      definition:
-        my-haproxy:
-          build: "/etc/haproxy"
+    definition:
+      my-haproxy:
+        build: "/etc/haproxy"
 
 - name: Start the container
   shell: "docker run \
