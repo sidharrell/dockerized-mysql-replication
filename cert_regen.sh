@@ -9,7 +9,7 @@ echo
 echo "These questions relate to the CA you are creating."
 echo
 openssl req -x509 -new -nodes -key certs/myCA.key -sha256 -days 1825 -out certs/myCA.pem
-openssl genrsa -out selfsigned.key 2048
+openssl genrsa -out certs/selfsigned.key 2048
 echo
 echo "These questions relate to the CSR generation."
 echo
