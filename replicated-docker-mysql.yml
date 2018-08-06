@@ -13,7 +13,7 @@
   - name: "Create the swarm"
     docker_swarm:
       state: present
-      advertise_addr: "{{ hostvars[mysql1]['ansible_default_ipv4']['address'] }}"
+      advertise_addr: "{{ hostvars['mysql1']['ansible_default_ipv4']['address'] }}"
 
 - hosts: swarmworker
 
@@ -21,7 +21,7 @@
   - name: Join as a worker
     docker_swarm:
       state: join
-      advertise_addr: "{{ hostvars[mysql2]['ansible_default_ipv4']['address'] }}"
+      advertise_addr: "{{ hostvars['mysql2']['ansible_default_ipv4']['address'] }}"
 
 
 - hosts: swarmmanager
