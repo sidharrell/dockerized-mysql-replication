@@ -23,6 +23,7 @@
       state: join
       advertise_addr: "{{ hostvars['mysql2']['ansible_default_ipv4']['address'] }}"
       join_token: swarm_facts.JoinTokens.Worker
+      remote_addrs: "{{ hostvars['mysql1']['ansible_default_ipv4']['address'] }}"
 
 - hosts: swarmmanager
 
