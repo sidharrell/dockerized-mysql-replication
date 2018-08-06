@@ -32,5 +32,5 @@
     networks:
      - name: db-net
        ipv4_address: "{{ haproxy_ip }}"
-    devices:
+    volumes:
      - "/etc/haproxy:/usr/local/etc/haproxy:ro"
