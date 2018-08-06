@@ -22,7 +22,7 @@
     docker_swarm:
       state: join
       advertise_addr: "{{ hostvars['mysql2']['ansible_default_ipv4']['address'] }}"
-      join_token: swarm_facts.JoinTokens.Worker
+      join_token: swarm_facts.contains.JoinTokens.contains.Worker
       remote_addrs: "{{ hostvars['mysql1']['ansible_default_ipv4']['address'] }}"
 
 - hosts: swarmmanager
