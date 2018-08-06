@@ -10,7 +10,7 @@
 - hosts: swarmmanager
 
   tasks:
-  - name: Create the swarm
+  - name: "Create the swarm"
     docker_swarm:
       state: present
 
