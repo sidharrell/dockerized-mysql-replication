@@ -16,11 +16,11 @@
       advertise_addr: "{{ hostvars['mysql1']['ansible_default_ipv4']['address'] }}"
     register: swarm_info
 
-- hosts: swarmworker
-
   tasks:
   - debug:
      msg: "{{ swarm_info }}"
+     
+- hosts: swarmworker
 
   - name: Join as a worker
     docker_swarm:
