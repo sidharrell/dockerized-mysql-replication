@@ -1,3 +1,5 @@
+**Dockerized-Mysql-Replication**  
+  
 To generate your own selfsigned cert, you will need to run the cert_regen.sh
 bash script. It will replace the file roles/haproxy/files/selfsigned.pem.
 You will need to copy the generated certs/myCA.pem file, and tell your
