@@ -30,7 +30,7 @@
      - "7500:7500/tcp"
      - "3607:3607/tcp"
     networks:
-     - name: db-net
-     - ipv4_address: "{{ haproxy_ip }}"
+     name: db-net
+     ipv4_address: "{{ haproxy_ip }}"
     devices:
      - "/etc/haproxy:/usr/local/etc/haproxy:ro"
