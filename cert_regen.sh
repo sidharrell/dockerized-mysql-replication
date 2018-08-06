@@ -24,9 +24,9 @@ subjectAltName = @alt_names
 EOF
 echo
 read -p "What is the hostname you want to use for the first host? " -r
-echo $REPLY >> certs/selfsigned.ext
+echo "DNS.1 = $REPLY" >> certs/selfsigned.ext
 read -p "What is the hostname you want to use for the second host? " -r
-echo $REPLY >> certs/selfsigned.ext
+echo "DNS.2 = $REPLY" >> certs/selfsigned.ext
 echo
 echo "Signing"
 echo
