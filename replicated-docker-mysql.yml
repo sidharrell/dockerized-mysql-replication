@@ -16,9 +16,6 @@
       advertise_addr: "{{ hostvars['mysql1']['ansible_default_ipv4']['address'] }}"
     register: swarm_info
 
-  - debug:
-     msg: "{{ swarm_info.swarm_facts.JoinTokens.Worker }}"
-
 - hosts: swarmworker
 
   tasks:
@@ -39,7 +36,7 @@
       ipam_options:
         subnet: '172.20.0.0/16'
         gateway: 172.20.0.2
-        attachable: true
+      attachable: true
 
 - hosts: all
 
