@@ -18,6 +18,8 @@
 - hosts: swarmworker
 
   tasks:
+  - debug:
+    msg: "{{ swarm_facts }}"
   - name: Join as a worker
     docker_swarm:
       state: join
