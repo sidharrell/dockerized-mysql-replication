@@ -1,3 +1,7 @@
+[all]
+mysql1
+mysql2
+
 [swarmmanager]
 mysql1
 [swarmworker]

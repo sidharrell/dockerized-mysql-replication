@@ -3,4 +3,3 @@ ansible_user: centos
 ansible_become: true
 ansible_ssh_pass: centos
 ansible_become_pass: centos
-haproxy_ip: 172.20.0.5

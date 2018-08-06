@@ -19,7 +19,7 @@
 - hosts: swarmworker
 
   tasks:
-  - name: Join as a manager
+  - name: Join as a manager, too.
     docker_swarm:
       state: join
       advertise_addr: "{{ hostvars['mysql2']['ansible_default_ipv4']['address'] }}"
