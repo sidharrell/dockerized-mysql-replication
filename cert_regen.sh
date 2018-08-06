@@ -1,5 +1,8 @@
 #!/bin/bash
 mkdir certs
+echo "These questions relate to the generation of the key."
+echo "You must enter a passphrase, you cannot skip, you cannot escape."
+echo "You have been warned!"
 openssl genrsa -des3 -out certs/myCA.key 2048
 echo "These questions relate to the CA you are creating."
 openssl req -x509 -new -nodes -key certs/myCA.key -sha256 -days 1825 -out certs/myCA.pem
