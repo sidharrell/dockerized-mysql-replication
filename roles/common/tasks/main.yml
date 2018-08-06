@@ -7,7 +7,8 @@
    - libselinux-python
    - libsemanage-python
 
-- selinux:
+- name: Disable selinux
+  selinux:
     state: disabled
   register: st
 
@@ -60,8 +61,10 @@
     state: started
     enabled: True
 
-- pip:
+- name: Install python-docker
+  pip:
     name: docker
 
-- pip:
+- name: Install python-docker-compose
+  pip:
     name: docker-compose

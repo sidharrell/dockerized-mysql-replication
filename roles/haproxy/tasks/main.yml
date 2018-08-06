@@ -1,7 +1,7 @@
 ---
 # This role contains the steps to set up the haproxy configuration and container
 
-- name:
+- name: Make the etc haproxy folder
   file:
     path: /etc/haproxy
     state: directory
