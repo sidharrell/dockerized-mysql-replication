@@ -25,7 +25,7 @@
 
   tasks:
   - name: "create overlay network"
-    docker_netowork:
+    docker_network:
       name: db-net
       driver: overlay
       ipam_options:
