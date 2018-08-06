@@ -61,5 +61,7 @@
     enabled: True
 
 - pip:
+    name: docker
+
+- pip:
     name: docker-compose
-    name: docker-py

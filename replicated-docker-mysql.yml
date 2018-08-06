@@ -10,41 +10,28 @@
 - hosts: swarmmanager
 
   tasks:
-  - name: "get docker info"
-    shell: docker info
-    register: docker_info
-    changed_when: false
-
-  - name: "create primary swarm manager"
-    shell: docker swarm init
-    when: "docker_info.stdout.find('Swarm: inactive') != -1"
-    register: swarminit
-
-  - name: "get docker swarm manager token"
-    shell: docker swarm join-token -q manager
-    register: manager_token
-    when: swarminit.changed
-
-  - name: "get docker swarm worker token"
-    shell: docker swarm join-token -q worker
-    register: worker_token
-    when: swarminit.changed
+  - name: Create the swarm
+    docker_swarm:
+      state: present
 
 - hosts: swarmworker
 
   tasks:
-  - name: "join as a worker"
-    shell: "docker swarm join --token {{ hostvars['mysql1']['worker_token']['stdout'] }} {{ hostvars['mysql1']['ansible_eth0']['ipv4']['address'] }}:2377"
-    when: hostvars.mysql1.swarminit.changed
-    retries: 3
-    delay: 20
+  - name: Join as a worker
+    docker_swarm:
+      state: join
 
 - hosts: swarmmanager
 
   tasks:
   - name: "create overlay network"
-    shell: "docker network create -d overlay --subnet=172.20.0.0/16 --gateway=172.20.0.2 --attachable db-net"
-    when: hostvars.mysql1.swarminit.changed
+    docker_netowork:
+      name: db-net
+      driver: overlay
+      ipam_options:
+        subnet: '172.20.0.0/16'
+        gateway: 172.20.0.2
+        attachable: true
 
 - hosts: all
 
