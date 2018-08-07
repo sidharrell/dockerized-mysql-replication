@@ -16,6 +16,18 @@
 - name: Add Dockerfile
   copy: src=Dockerfile dest=/etc/haproxy/Dockerfile
 
+- name: Add unit file
+  copy: src=haproxy_container.service dest=/etc/systemd/system/
+
+- name: Add start script
+  copy: src=start_haproxy.sh dest=/etc/haproxy/start_haproxy.sh
+
+- name: Enable haproxy_container unit file
+  systemd:
+    name: haproxy_container.service
+    daemon-reload: yes
+    enabled: yes
+
 - name: Build the container
   docker_image:
      path: /etc/haproxy

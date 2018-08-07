@@ -1,0 +1,8 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/etc/haproxy/start_haproxy.sh
+
+[Install]
+WantedBy=default.target
